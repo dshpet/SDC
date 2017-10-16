@@ -1,0 +1,26 @@
+2017.1.1f1:3.3.0.2
+StandaloneLinux
+M:/Lyorningu/Editor/Data/Managed/UnityEditor.dll
+M:/Lyorningu/Editor/Data/Managed/UnityEngine.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/TestRunner/Editor/UnityEditor.TestRunner.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/Timeline/Editor/UnityEditor.Timeline.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/UnityAnalytics/Editor/UnityEditor.Analytics.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/UnityHoloLens/Editor/UnityEditor.HoloLens.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/UnityPurchasing/Editor/UnityEditor.Purchasing.dll
+M:/Lyorningu/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll
+M:/Lyorningu/Editor/Data/Managed/UnityEditor.Graphs.dll
+M:/Lyorningu/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+M:/Lyorningu/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll
+M:/Lyorningu/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll
