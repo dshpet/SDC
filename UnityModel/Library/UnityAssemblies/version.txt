@@ -1,5 +1,5 @@
 2017.1.1f1:3.3.0.2
-StandaloneLinux
+StandaloneWindows
 M:/Lyorningu/Editor/Data/Managed/UnityEditor.dll
 M:/Lyorningu/Editor/Data/Managed/UnityEngine.dll
 M:/Lyorningu/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
