@@ -1,38 +1,58 @@
 ﻿using UnityEngine;
+using System;
+using System.IO;
 
+/// <summary>
+/// Logging for neural network
+/// </summary>
 public class ScreenshotMaker : MonoBehaviour
 {
     //
     // Config
     //
 
-    public string ScreenshotsFolder = "Screenshots";
-    public int    Scale             = 1;
+    public string DataFolder = "SavedData";
+    public int    Scale      = 1;
 
     //
     // Members
     //
 
-    private int m_ScreenshotsTaken = 0;
+    private string m_DataPath = "";
 
     //
     // Functions
     //
 
-	void Update()
+    void Start()
     {
-		if (Input.GetKeyUp(KeyCode.F1))
+        m_DataPath = Application.dataPath + "/../" + DataFolder;
+        if (!System.IO.Directory.Exists(m_DataPath))
+            System.IO.Directory.CreateDirectory(m_DataPath);        
+    }
+
+    void Update()
+    {
+        string TimeNow = System.DateTime.Now.ToString("yyyyMMddHHmmssFFF");
+
+        string BasePath = m_DataPath + "/" + TimeNow;
+		// Capture screenshot
         {
-            string ScreenshotsPath = Application.dataPath + "/../" + ScreenshotsFolder;
-            if (!System.IO.Directory.Exists(ScreenshotsPath))
-                System.IO.Directory.CreateDirectory(ScreenshotsPath);
+            string PicturePath = BasePath + ".png";
+            ScreenCapture.CaptureScreenshot(PicturePath, Scale);
+        }
+        // Capture input
+        {
+            string InputString = "";
+            foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
+            {
+                if (Input.GetKeyDown(kcode))
+                    InputString += kcode;
+            }
 
-            string TimeNow = System.DateTime.Now.ToString("yyyyMMddHHmmssFFF");
-            string Path    = ScreenshotsPath + "/" + TimeNow + ".png";
-
-            ScreenCapture.CaptureScreenshot(Path, Scale);
-
-            m_ScreenshotsTaken++;
+            // maybe should pump an empty file for training sake
+            if (InputString != "")
+                System.IO.File.WriteAllText(BasePath + ".txt", InputString);
         }
 	}
 }
