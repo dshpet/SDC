@@ -14,15 +14,24 @@ import numpy as np
 import cv2
 from PIL import ImageGrab
 
-def screen_record():
-	while True:
-		# 800x600 window
-		printscreen = np.array(ImageGrab.grab(bbox=(0, 40, 800, 640)))
+def process_image(_image):
+  processed_image = cv2.cvtColor(_image, cv2.COLOR_BGR2GRAY)
+  processed_image = cv2.Canny(processed_image, threshold1 = 200, threshold2 = 300)
 
-		cv2.imshow('window', cv2.cvtColor(printscreen, cv2.COLOR_BGR2RGB))
+  return processed_image
 
-		if cv2.waitKey(25) & 0xFF == ord('q'):
-			cv2.destroyAllWindows()
-			break
 
-screen_record()
+def main():
+  while True:
+    # 800x600 window
+    screen = np.array(ImageGrab.grab(bbox=(0, 40, 800, 640)))
+    processed_screen = process_image(screen)
+
+    cv2.imshow('window', processed_screen)
+    #cv2.imshow('window', cv2.cvtColor(screen, cv2.COLOR_BGR2RGB))
+
+    if cv2.waitKey(25) & 0xFF == ord('q'):
+      cv2.destroyAllWindows()
+      break
+
+main()
