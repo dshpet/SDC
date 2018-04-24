@@ -21,18 +21,40 @@ import inputsimulator as input
 
 # todo use it on other simulators with direct input processing
 # terminal takes the input
-# from inputsimulator import PressKey, W, A, S, D
+# from inputsimulator import ReleaseKey, PressKey, W, A, S, D
+
+def roi(_image, _vertices):
+  mask = np.zeros_like(_image)
+  cv2.fillPoly(mask, _vertices, 255)
+
+  masked = cv2.bitwise_and(_image, mask)
+  
+  return masked
 
 def process_image(_image):
   processed_image = cv2.cvtColor(_image, cv2.COLOR_BGR2GRAY)
   processed_image = cv2.Canny(processed_image, threshold1 = 200, threshold2 = 300)
+
+  # only bottom part of the image (road)
+  vertices = np.array(
+      [
+        [ 10, 500],
+        [ 10, 300],
+        [300, 200],
+        [500, 200],
+        [800, 300],
+        [800, 500],
+      ], 
+      np.int32
+    )  
+  processed_image = roi(processed_image, [vertices])
 
   return processed_image
 
 def main():
   while True:
     # todo change
-    input.PressKeyIndirect('w') 
+    # input.PressKeyIndirect('w') 
 
     # 800x600 window
     screen = np.array(ImageGrab.grab(bbox=(0, 40, 800, 640)))
