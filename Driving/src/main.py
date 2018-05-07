@@ -111,7 +111,7 @@ def get_road_lanes(_image, _lines):
     l1_x1, l1_y1, l1_x2, l1_y2 = average_lane(final_lanes[lane1_id])
     l2_x1, l2_y1, l2_x2, l2_y2 = average_lane(final_lanes[lane2_id])
   
-    return [l1_x1, l1_y1, l1_x2, l1_y2], [l2_x1, l2_y1, l2_x2, l2_y2]
+    return [l1_x1, l1_y1, l1_x2, l1_y2], [l2_x1, l2_y1, l2_x2, l2_y2], lane1_id, lane2_id
 
   except Exception as e:
     print(str(e))
@@ -163,12 +163,11 @@ def process_image(_image):
   # http://docs.opencv.org/3.0-beta/doc/py_tutorials/py_imgproc/py_houghlines/py_houghlines.html
   # edges, rho, theta, threshold, min length, max gap
   lines = cv2.HoughLinesP(processed_image, 1, np.pi / 180, 180, 20, 15)
-
-  draw_lines(processed_image, lines)
-  return processed_image, original_image
+  m1 = 0
+  m2 = 0
 
   try:
-    l1, l2 = get_road_lanes(original_image, lines)
+    l1, l2, m1, m2 = get_road_lanes(original_image, lines)
 
     color     = [0, 255, 0]
     thickness = 30
@@ -193,7 +192,7 @@ def process_image(_image):
   except Exception as e:
     pass
 
-  return processed_image, original_image
+  return processed_image, original_image, m1, m2
 
 def main():
   while True:
@@ -202,10 +201,19 @@ def main():
 
     # 800x600 window
     screen = np.array(ImageGrab.grab(bbox=(0, 40, 800, 640)))
-    processed_screen, original_screen = process_image(screen)
+    processed_screen, original_screen, m1, m2 = process_image(screen)
 
-    cv2.imshow('SDC_driver', processed_screen)
-    #cv2.imshow('SDC_driver', cv2.cvtColor(screen, cv2.COLOR_BGR2RGB))
+    # drive based on slopes values
+    # stay on in the middle between two lanes
+    if m1 < 0 and m2 < 0:
+      input.right()
+    elif m1 > 0 and m2 > 0:
+      input.left()
+    else:
+      input.straight()
+
+    #cv2.imshow('SDC_driver', processed_screen)
+    cv2.imshow('SDC_driver', cv2.cvtColor(screen, cv2.COLOR_BGR2RGB))
 
     if cv2.waitKey(25) & 0xFF == ord('q'):
       cv2.destroyAllWindows()

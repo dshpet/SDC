@@ -96,11 +96,27 @@ def ReleaseKeyIndirect(_key):
   pyautogui.keyUp(_key)
 
 #
-# Test
+# High level abstract input
 #
 
-# if __name__ == '__main__':
-#     PressKey(0x11)
-#     time.sleep(1)
-#     ReleaseKey(0x11)
-#     time.sleep(1)
+def straight():
+    PressKey(W)
+    ReleaseKey(A)
+    ReleaseKey(D)
+
+def left():
+    PressKey(A)
+    ReleaseKey(W)
+    ReleaseKey(D)
+    ReleaseKey(A)
+
+def right():
+    PressKey(D)
+    ReleaseKey(A)
+    ReleaseKey(W)
+    ReleaseKey(D)
+
+def slow_ya_roll():
+    ReleaseKey(W)
+    ReleaseKey(A)
+    ReleaseKey(D)
