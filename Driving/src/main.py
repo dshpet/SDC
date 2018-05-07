@@ -116,6 +116,21 @@ def get_road_lanes(_image, _lines):
   except Exception as e:
     print(str(e))
 
+def draw_lines(_image, _lines):
+  try:
+    for line in _lines:
+      coords = line[0]
+      cv2.line(
+          _image, 
+          (coords[0], coords[1]), 
+          (coords[2], coords[3]), 
+          [255, 255, 255], 
+          3
+        )
+
+  except:
+    pass
+
 def roi(_image, _vertices):
   mask = np.zeros_like(_image)
   cv2.fillPoly(mask, _vertices, 255)
@@ -128,8 +143,8 @@ def process_image(_image):
   original_image = _image
 
   processed_image = cv2.cvtColor(_image, cv2.COLOR_BGR2GRAY)
-  processed_image = cv2.GaussianBlur(processed_image, (5, 5), 0)
   processed_image = cv2.Canny(processed_image, threshold1 = 200, threshold2 = 300)
+  processed_image = cv2.GaussianBlur(processed_image, (3, 3), 0)
 
   # only bottom part of the image (road)
   vertices = np.array(
@@ -148,6 +163,10 @@ def process_image(_image):
   # http://docs.opencv.org/3.0-beta/doc/py_tutorials/py_imgproc/py_houghlines/py_houghlines.html
   # edges, rho, theta, threshold, min length, max gap
   lines = cv2.HoughLinesP(processed_image, 1, np.pi / 180, 180, 20, 15)
+
+  draw_lines(processed_image, lines)
+  return processed_image, original_image
+
   try:
     l1, l2 = get_road_lanes(original_image, lines)
 
